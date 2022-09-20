@@ -16,9 +16,9 @@ pipeline {
             steps {
                 echo 'building docker image'
                 withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                    sh 'docker build -t hacklight/demo-app:1.0 .'
-                    sh "echo $PASS | docker login -u $USER --password-stdin"
-                    sh 'docker push hacklight/demo-app:1.0'
+                    sh 'sudo docker build -t hacklight/demo-app:1.0 .'
+                    sh "echo $PASS | sudo docker login -u $USER --password-stdin"
+                    sh 'sudo docker push hacklight/demo-app:1.0'
                 }
             }
         }
