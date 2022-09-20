@@ -9,7 +9,7 @@ pipeline {
             }
         }
 
-        stages('build docker image') {
+        stage('build docker image') {
             steps {
                 echo 'building docker image'
                 withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
@@ -20,7 +20,7 @@ pipeline {
             }
         }
 
-        stages('deploy') {
+        stage('deploy') {
             steps {
                 echo 'deploying application'
             }
