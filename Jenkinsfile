@@ -9,6 +9,7 @@ pipeline {
                 echo 'building application'
                 sh 'node -v'
                 sh 'npm -v'
+                sh 'docker'
             }
         }
 
