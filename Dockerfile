@@ -1,19 +1,14 @@
-FROM node:16
+FROM node:13-alpine
 
-# Create app directory
-WORKDIR /usr/src/app
+RUN mkdir -p /home/app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY .
+COPY . /home/app
 
+# set default dir so that next commands executes in /home/app dir
+WORKDIR /home/app
+
+# will execute npm install in /home/app because of WORKDIR
 RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
 
-# Bundle app source
-COPY . .
-
-EXPOSE 8000
-CMD [ "node", "server.js" ]
+# no need for /home/app/server.js because of WORKDIR
+CMD ["node", "server.js"]
